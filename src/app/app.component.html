@@ -1,0 +1,25 @@
+<app-header-nav-bar></app-header-nav-bar>
+
+
+<main *ngIf="isloggedIn">
+
+    <app-side-nav-bar  [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-bar-open':sideNavStatus}"></app-side-nav-bar>
+</main>
+
+<!-- 
+<router-outlet>
+    
+</router-outlet> -->
+ 
+
+<div  [ngClass]="{'display-area-shrink':!sideNavStatus}"  >
+    <router-outlet></router-outlet>
+</div> 
+
+
+<main >
+
+<div *ngIf="isloggedIn">
+    <app-side-nav-bar [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-bar-open':sideNavStatus}">
+    </app-side-nav-bar>
+</div> 

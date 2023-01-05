@@ -1,0 +1,97 @@
+<p>customers works!</p>
+
+
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: snow;
+}
+</style>
+</head>
+<div class="container">
+
+<body>
+
+<h1>Customers List</h1>
+<input type="text"  placeholder="Search by Username" [(ngModel)]="searchInput.userName"  >&nbsp;
+
+<button routerLink="/viewCustomers2" mat-raised-button color="primary">View Account Inactive Users</button>
+
+<div style="float: right;">
+  <select (change)="onTableSizeChange($event)">
+  <option *ngFor="let size of tableSizes">
+   {{size}}
+  </option>
+  </select>
+</div>
+<div >
+<table border='1' class="table table-striped">
+<thead class="thead-light" style="text-align:center">
+<tr >
+ <th (click)="sort('id')">UserId <i class="fa fa-sort"></i></th>
+<th (click)="sort('userName')">userName <i class="fa fa-sort"></i></th>
+ <th (click)="sort('mobile')" >PhoneNumber <i class="fa fa-sort"></i></th>
+<th (click)="sort('email')" >Email <i class="fa fa-sort"></i></th>
+ <th>Action</th>
+
+</tr>
+ </thead>  
+
+<tbody>
+<tr *ngFor="let s of user 
+| orderBy: orderHeader:isDescOrder
+| filterBy: searchInput
+| paginate:{itemsPerPage:tableSize,
+  currentPage:page,
+  totalItems:count} let i index "
+
+> 
+<td>{{s.id}}</td>
+ <td>{{s.userName}}</td>
+ <td>{{s.mobile}}</td>
+<td>{{s.email}}</td>
+<td > 
+ <img  class="icon" src="https://img.icons8.com/color/512/delete-forever.png" (click)="deleteUser(s.userName)" alt="delete" title="Delete" >&nbsp;
+</td>
+<!-- <td>{{s.mobile}}</td>
+<td>{{s.isActive}}</td> -->
+
+
+
+<!-- <button *ngIf="user1.userName!=s.userName" mat-icon-button color="warn" (click)="deleteUser(s.userName)"><mat-icon>delete</mat-icon>delete</button> -->
+<!-- <button *ngIf="user1.userName==s.userName" mat-icon-button color="warn" ><mat-icon>sentiment_satisfied_alt</mat-icon></button> -->
+
+
+
+
+
+<!-- <td></td> -->
+
+</tr>
+<!-- <div *ngIf="(user1 | filterBy:searchInput).length===0">No Match</div> -->
+</tbody>
+</table>
+<div style="float: right;">
+  <pagination-controls
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="onTableDataChange($event)"
+    ></pagination-controls>
+</div>
+</div>
+
+
+

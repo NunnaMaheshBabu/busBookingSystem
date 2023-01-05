@@ -1,0 +1,210 @@
+<p>add-bus works!</p>
+
+
+
+<div class="container">
+    <div class="bus">
+        <div class="card" style=" top: -106px;">
+            <div class="card-body">
+                <form [formGroup]="busForm" (ngSubmit)="addBus()">
+                    <h1>Add Bus </h1>
+                    <!-- <div class="form-group"> -->
+                        <label for="busNumber">Bus Number</label>
+                        <input class="form-control" type="text" [(ngModel)]="buses.busNumber"
+                            formControlName="busNumber" name="busNumber" id="busNumber" class="form-control" required
+                            placeholder="Enter Bus Number">
+                        <div class="form-text text-danger error" style="margin-top: -15px;"
+                            *ngIf="busNumber.errors?.['required'] && (busNumber.touched || busNumber.dirty ) ">
+                            *Bus Number is Required
+                        </div>
+                        <div class="form-text text-danger error" *ngIf="busNumber.errors?.['minlength']">
+                            *Bus Number is too Short
+                        </div>
+                        <div class="form-text text-danger error" *ngIf="busNumber.errors?.['pattern'] && busNumber.touched">
+                            *Bus Number Should Be Valid Indian Vehicle Plate Number(Eg: AP 04 EW 1234 or WB 06 F 5977)
+                        </div>
+                    <!-- </div> -->
+
+
+                    <!-- <div class="form-group"> -->
+                        <label for="startingPoint">Source
+                        </label>
+                        <input class="form-control" formControlName="source" type="text" [(ngModel)]="buses.source"
+                            name="source" id="source" class="form-control" required placeholder="Enter Starting point">
+
+                        <div class="form-text text-danger error"
+                            *ngIf="source.errors?.['required'] && (source.touched || source.dirty)">
+                            *Source is Required
+                        </div>
+                        <div class="form-text text-danger error" *ngIf="source.errors?.['minlength']">
+                            *Source is too short
+                        </div>
+
+                        <div class="form-text text-danger error" *ngIf="source.errors?.['pattern'] && source.touched">
+                            *Source Should start with Alphabet
+                        </div>
+                    <!-- </div> -->
+                    <!-- [(ngModel)]="category.title" -->
+
+                    <!-- <div class="form-group"> -->
+                        <label for="endingPoint">Destination
+                        </label>
+                        <input class="form-control" formControlName="destination" type="text"
+                            [(ngModel)]="buses.destination" name="destination" id="destination" class="form-control"
+                            required placeholder="Enter Ending point">
+                        <div class="form-text text-danger error"
+                            *ngIf="destination.errors?.['required'] && (destination.touched || destination.dirty)">
+                            *Destination is Required
+                        </div>
+                        <div class="form-text text-danger error" *ngIf="destination.errors?.['minlength']">
+                            *Destination is too short
+                        </div>
+
+                        <div class="form-text text-danger error"
+                            *ngIf="destination.errors?.['pattern'] && destination.touched">
+                            *Destination Should start with Alphabet
+                        </div>
+
+                     <!-- -------------------pickUp point------------------------------------------- -->
+
+                     <label for="pickUpPoint">Boarding Point
+                    </label>
+                    <input class="form-control" formControlName="pickUpPoint" type="text"
+                        [(ngModel)]="buses.pickUpPoint" name="pickupPoint" id="pickUpPoint" class="form-control"
+                        required placeholder="Enter Boarding point Details">
+                    <div class="form-text text-danger error"
+                        *ngIf="pickUpPoint.errors?.['required'] && (pickUpPoint.touched || pickUpPoint.dirty)">
+                        *Boarding Point  is Required
+                    </div>
+                    <div class="form-text text-danger error" *ngIf="pickUpPoint.errors?.['minlength']">
+                        *Boarding Point is too short
+                    </div>
+
+                    <div class="form-text text-danger error"
+                        *ngIf="pickUpPoint.errors?.['pattern'] && pickUpPoint.touched">
+                        *Boarding Point Should start with Alphabet 
+                    </div>
+
+
+                    <!-- ------------------------------Dropping point ------------------------------- -->
+
+                    <label for="droppingPoint">Dropping Point
+                    </label>
+                    <input class="form-control" formControlName="droppingPoint" type="text"
+                        [(ngModel)]="buses.droppingPoint" name="droppingPoint" id="droppingPoint" class="form-control"
+                        required placeholder="Enter Dropping point Details">
+                    <div class="form-text text-danger error"
+                        *ngIf="droppingPoint.errors?.['required'] && (droppingPoint.touched || droppingPoint.dirty)">
+                        *Dropping Point  is Required
+                    </div>
+                    <div class="form-text text-danger error" *ngIf="droppingPoint.errors?.['minlength']">
+                        *Dropping Point is too short
+                    </div>
+
+                    <div class="form-text text-danger error"
+                        *ngIf="droppingPoint.errors?.['pattern'] && droppingPoint.touched">
+                        *Dropping Point Should start with Alphabet 
+                    </div>
+
+
+                    <!-- </div> -->
+
+                    <!-- <div class="form-group"> -->
+                        <label for="totalSeats">Total Seats
+                        </label>
+                        <input class="form-control" formControlName="totalSeats" type="number"
+                            [(ngModel)]="buses.totalSeats" name="totalSeats" id="totalSeats" class="form-control"
+                            required placeholder="Enter Total Seats">
+                        <div class="form-text text-danger error"
+                            *ngIf="totalSeats.errors?.['required'] && (totalSeats.touched || totalSeats.dirty)">
+                            *Total Seats is Required
+                        </div>
+
+                    <!-- </div> -->
+
+                    <!-- <div class="form-group"> -->
+                        <label for="cost">Bus Fare</label>
+                        <input class="form-control" formControlName="price" type="text" [(ngModel)]="buses.price"
+                            name="price" id="price" required placeholder="Enter Ticket Fare">
+                        <div class="form-text text-danger error"
+                            *ngIf="price.errors?.['required'] && (price.touched || price.dirty)">
+                            *Price is Required
+                        </div>
+                    <!-- </div> -->
+
+                    <!-- <div class="form-group"> -->
+                        <label for="cost">Driver Name</label>
+                        <input class="form-control" formControlName="driverName" type="text"
+                            [(ngModel)]="buses.driverName" name="driverName" id="driverName" required
+                            placeholder="Enter Driver Name">
+                        <div class="form-text text-danger error"
+                            *ngIf="driverName.errors?.['required'] && (driverName.touched || driverName.dirty ) ">
+                            *Driver Name is Required
+                        </div>
+                        <div class="form-text text-danger error" *ngIf="driverName.errors?.['minlength']">
+                            *Driver Name is too Short
+                        </div>
+                        <div class="form-text text-danger error" *ngIf="driverName.errors?.['pattern'] && driverName.touched">
+                            *Driver Name Should start with Alphabet
+                        </div>
+                    <!-- </div> -->
+
+
+                    <!-- <div class="form-group"> -->
+                        <label for="cost">Phone Number</label>
+                        <input class="form-control" formControlName="phoneNumber" type="text"
+                            [(ngModel)]="buses.phoneNumber" name="phoneNumber" id="phoneNumber" required
+                            placeholder="Enter Driver Phone Number">
+                        <div class="form-text text-danger error"
+                            *ngIf="phoneNumber.errors?.['required'] && phoneNumber.touched ">
+                            *Phone number required
+                        </div>
+                        <div class="form-text text-danger error" *ngIf="phoneNumber.errors?.['pattern'] && phoneNumber.touched"> 
+                            *must have only digits
+                            
+                        </div>
+
+                        <div class="form-text text-danger error"
+                            *ngIf="phoneNumber.errors?.['minlength'] && phoneNumber.touched">
+                            *min numbers 10 only
+                        </div>
+                        <div class="form-text text-danger error"
+                            *ngIf="phoneNumber.errors?.['maxlength'] && phoneNumber.touched">
+                            *max numbers 10 only
+                        </div>
+                    <!-- </div> -->
+
+                    <!-- <div class="form-group"> -->
+                        <label for="busType">Bus Type</label>
+
+                        <select class="form-select" formControlName="busType" name="busType" id="busType"
+                            aria-label="Enter Bus Type">
+                            <option disabled selected [(ngModel)]="buses.busType">Select Bus Type</option>
+                            <option value="AC">AC</option>
+                            <option value="NON/AC">NON/AC</option>
+                        </select>
+                            <div class="form-text text-danger error"
+                            *ngIf="busType.errors?.['required']  && (busType.touched || busType.dirty)">
+                               *Bus Type Required
+                         </div>
+                       
+                        
+
+                    <!-- </div> -->
+
+
+
+
+                    <div style="text-align: center  ; margin-top: 10px; border-radius: 30px;">
+                        <button type="submit" class="btn btn-primary text-align:center"  [disabled]="busForm.invalid">Add
+                            Bus </button> &nbsp;
+                        <button type="reset" class="btn btn-info float-right">Clear </button> &nbsp;
+                        <button class="btn btn-danger float-right" routerLink="/addBus">Cancel </button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+
+<div class="container" style="padding-left: 140px; margin-top: 40px;">
+    <h1>View Bookings</h1>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+
+            <th scope="col">Customer Name</th>
+            <th scope="col">Source</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Journey Date</th>
+            <th scope="col">Seats</th>
+            <th scope="col">Fare</th>
+            <th scope="col">Booking Status</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bus of busList; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>Mahesh</td>
+            <td>{{bus.source}}</td>
+            <td>{{bus.destination}}</td>
+            <div *ngFor="let aval of bus.setAvailabilities;let i=index">
+              {{aval.availableDate}} 
+            </div>
+            <td>
+            <div *ngFor="let aval of bus.setAvailabilities;let i=index">
+              {{aval.bookedCount}} 
+            </div>
+            <!-- <div *ngFor="let aval of bus.seats;let i=index">
+              {{aval.seatNumber}} 
+            </div> -->
+          </td>
+            <!-- <td >{{bus.pickUpPoint}}</td> -->
+            <td>{{bus.price}}</td>
+
+            <td>Confirmed</td>
+          </tr>
+         
+         
+        </tbody>
+      </table>
+  
+
+</div>
+
+

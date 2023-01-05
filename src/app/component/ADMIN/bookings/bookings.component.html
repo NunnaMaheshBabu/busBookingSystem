@@ -1,0 +1,258 @@
+<div class="container" style="padding-left: 150px; margin-top: 30px;">
+    <!-- <div class="container"> -->
+    <h1>Bus Info</h1>
+    <div class="row" style="margin-bottom: 50px;">
+        <div class="col-sm-3">
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Bus ID:</th>
+                        <td>{{busById.busId}}</td>
+                    </tr>
+                    <tr>
+                        <th>Bus Number:</th>
+                        <td>{{busById.busNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Bus Type:</th>
+                        <td>{{busById.busType}}</td>
+                    </tr>
+                    <tr>
+                        <th>Bus Source:</th>
+                        <td>{{busById.source}}</td>
+                    </tr>
+                    <tr>
+                        <th>Bus Destination:</th>
+                        <td>{{busById.destination}}</td>
+                    </tr>
+                    <tr>
+                        <th>Price:</th>
+                        <td>{{busById.price}}</td>
+                    </tr>
+                    <tr>
+                        <th>Total Seats:</th>
+                        <td>{{busById.totalSeats}}</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Driver Name:
+                        </th>
+                        <td>
+                            {{busById.driverName}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Driver Number:
+                        </th>
+                        <td>
+                            {{busById.phoneNumber}}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-5">
+            <strong>Journey Date and Bus Point Details:</strong> <br><br>
+            <table style="margin-bottom: 50px;">
+                <tbody>
+                     
+                    <tr>
+                        <th>
+                            Boarding Point:
+                        </th>
+                        <td>
+                            {{busById.pickUpPoint}}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            Dropping Point:
+                        </th>
+                        <td>
+                            {{busById.droppingPoint}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Journey Date:
+                        </th>
+                        <td>
+                            {{setAvail.availableDate}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Available Seats:
+                        </th>
+                        <td>
+                            {{setAvail.noAvailableSeates}}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+    </div>
+
+    <h1 style="margin-top: 80px;">Book Your Seat</h1>
+
+    <!-- <ul class="showCase" style="display:flex;gap: 50px 10px;list-style-type: none; width: 100px;">
+            <li>
+                <div class="seat available">
+                    <i class="fa-solid fa-square-small"></i>
+                                   
+                </div>
+            </li>
+
+            <li>
+                <div class="seat selected">
+                    <i class="fa-solid fa-square-small"></i>
+                    <small>Selected</small>
+                </div>
+            </li>
+
+            <li>
+                <div class="seat occupied">
+                    <small>Occupied</small>
+                </div>
+            </li>
+
+        </ul> -->
+
+
+
+    
+    <div  style="float: left;display: flex;">
+        <i class="fa-solid fa-circle" style="color:green"></i> &nbsp; &nbsp;
+        <h6>Available</h6>
+
+        <i class="fa-solid fa-circle" style="color:rgb(235, 11, 11);padding-left: 50px;"></i> &nbsp; &nbsp;
+        <h6>Not available</h6>
+
+        <i class="fa-solid fa-circle" style="color:aqua;padding-left: 50px;"></i> &nbsp; &nbsp;
+        <h6>Selected</h6>
+
+        <i class="fa-solid fa-circle" style="color:orange;padding-left: 50px;"></i> &nbsp; &nbsp;
+        <h6>Booked</h6>
+    </div>
+
+<!-- ----------------------------------------------Book Ticket----------------------------- -->
+
+
+    <!-- <div class="card col-md-6 col-lg-6" style="padding-top: 70px;"> -->
+        <!-- <div class="card-body"> -->
+    <div style="float: right;padding-right:300px;padding-top: 100px;">
+        <strong>Already Booked Seats: </strong> {{setAvail.seats.length}}<br>
+        <strong>Selected Seat Number: </strong>
+        <ng-container *ngFor="let seatNo of seatNumber">
+            {{seatNo}},
+        </ng-container>
+        <br>
+        <strong> Select Seats count:</strong> {{seatNumber.length}} <br>
+        <strong>Total Price: </strong> {{ totalPrice}}<br><br>
+        <strong> <button type="button" (click)="order()" class="btn btn-primary">Book Ticket</button></strong>
+        <!-- <strong> <button type="button" routerLink="/viewTicket" class="btn btn-primary">Book Ticket</button></strong> -->
+        <!-- <button  class="btn btn-success" (click)="toBookTicket(seatNumber)">Book Ticket</button>&nbsp; -->
+
+    </div>
+<!-- </div> -->
+<!-- </div> -->
+
+
+
+<!-- ----------------------------------------BusLayout------------------------------------------- -->
+
+    <div class="card" style="width:350px;margin-top: 50px;">
+
+        <!-- <i class="fa-solid fa-person-seat"></i> -->
+        <!-- <div class="card-body">
+                    <div class="d-flex flex-wrap">
+                        <div *ngFor="let aval of setAvail.seats;let i=index">
+                            <div *ngIf="(i%2)!=0">
+                                <div class="space">
+                                </div>
+                            </div>
+                            <div class="p-2 seat">
+                                <button class="number" (click)="select(aval.seatNumber)">{{aval.seatNumber}}</button>
+                            </div>
+                         
+
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+        <div class="card-body">
+            <div class="d-flex flex-wrap">
+                <div *ngFor="let noSeat of idArray ; let i=index;">
+                    <div *ngIf="(i%2)!=0">
+                        <div class="space">
+                        </div>
+                    </div>
+                    <div class="p-2 seat">
+                        <button class="booked" *ngIf="(i+1)<=seatBooked && setAvail.seats[i].isBooked">{{i+1}}</button>
+                        <button class="number"
+                            [ngStyle]="seatNumber.includes(i+1) ? {'background-color':'aqua','color': 'white'} :{'background-color':'green','color': 'white'}"
+                            *ngIf="(i+1)<=setAvail.noAvailableSeates && (i+1)>seatBooked"
+                            (click)="select(i+1)">{{i+1}}</button>
+                        <button class="unavalable" *ngIf="(i+1)>setAvail.noAvailableSeates">{{i+1}}</button>
+                    </div>
+                    <!-- <div *ngIf="aval.isBooked" class="seat1"> -->
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- ---------------------------------new code ---------------------- -->
+
+    <!-- <label>Choose Seat</label>
+<div class="bus seat2-2 border-0 p-0" *ngFor="let aval of setAvail.seats">
+  <div class="seat-row-1">
+    <ol class="seats">
+      <li class="seat" >
+        <input role="input-passenger-seat" name="" id="" value="1" required="" type="radio">
+        <label for="" (click)="select(aval.seatNumber)">{{aval.seatNumber}}</label></li>
+     
+    </ol>
+  </div>
+</div> -->
+
+    <!-- <div class="text-left mt-2">
+  <button class="btn btn-primary btn-xs mb-2">Available</button>
+  <button class="btn btn-success btn-xs mb-2">Choosen</button>
+  <button class="btn btn-danger btn-xs mb-2">Booked</button>
+</div> -->
+
+    <!-- -------------------------------------------------new code end------------------------------------------- -->
+
+    <!-- </div> &nbsp; -->
+
+
+    <!-- --------------------------Showing Ticket Information -------------- -->
+    <!-- <div class="show" style="padding-left: 240px;  padding-top: 10px;">
+        <ng-container *ngIf="showContainer">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Ticket Information</h5>
+                    <p class="card-text"> </p>
+                    <a href="#" class="btn btn-primary">Go</a>
+                </div>
+            </div>
+        </ng-container>
+    </div> -->

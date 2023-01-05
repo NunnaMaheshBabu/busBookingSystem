@@ -1,0 +1,162 @@
+<div class="side-nav-content" *ngIf="loggedIn">
+    <ul class="nav-list" [ngClass]="{'nav-list-open': sideNavStatus}">
+        <!-- <li class="nav-list-item " >
+            <i class="fa-solid fa-house"></i>
+            <span *ngIf="sideNavStatus">
+                <a   routerLink='home'>Home</a>
+            </span>
+        </li> -->
+         
+         
+        <li *ngIf="loggedIn" class="nav-list-item " >
+            <i class="fa-solid fa-box"></i>
+            <span *ngIf="sideNavStatus">
+                <a *ngIf="userType=='ADMIN'"  href="addBus">DashBoard</a> 
+                <a *ngIf="userType=='NORMAL'" href="getAvailability">DashBoard</a>  
+            </span>
+        </li>
+
+        <!-- <li class="nav-list-item  " >
+            <i class="fa-solid fa-book"></i>
+            <span *ngIf="sideNavStatus">
+                <a   routerLink='uploadRecords'>Bookings</a>
+            </span>
+        </li> -->
+ <!-- ====================================Admin ==========================      -->
+        <div *ngIf="userType=='ADMIN'">
+            <li class="nav-list-item " >
+                <i class="fa-solid fa-table"></i>
+                <span *ngIf="sideNavStatus">
+                    <a routerLink='addBus'>Buses</a>
+                </span>
+           </li>
+           <!-- <li class="nav-list-item " >
+            <i class="fa-solid fa-table"></i>
+            <span *ngIf="sideNavStatus">
+                <a routerLink='add'>AddBus</a>
+            </span>
+       </li> -->
+
+           <!-- <li class="nav-list-item  " >
+            <i class="fa-solid fa-table"></i>
+            <span *ngIf="sideNavStatus">
+                <a   routerLink='setAvailability/393'  >Availabilty</a>
+            </span>
+        </li> -->
+
+            <!-- <li class="nav-list-item  " >
+                <i class="fa-solid fa-book"></i>
+                <span *ngIf="sideNavStatus">
+                    <a   routerLink='viewBookingByAdmin'>Bookings</a>
+                </span>
+            </li> -->
+
+            <!-- <li class="nav-list-item  " >
+                <i class="fa-solid fa-map-marker"></i>
+                <span *ngIf="sideNavStatus">
+                    <a   routerLink='addBooking'>AddBooking</a>
+                </span>
+            </li> -->
+
+            <li class="nav-list-item  " >
+                <i class="fa-solid fa-users"></i>
+                <span *ngIf="sideNavStatus">
+                    <a   routerLink='viewCustomers'  >Customers</a>
+                </span>
+            </li>
+
+            <li class="nav-list-item " *ngIf="userType=='ADMIN'" >
+                <i class="fa-solid fa-ticket-simple" aria-hidden="true"></i>
+                <span *ngIf="sideNavStatus">
+                    <a   routerLink='allBookings'>All Bookings</a>
+                </span>
+            </li>
+
+            
+
+        </div>
+
+        <!-- ====================================User ==========================      -->
+        <div *ngIf="userType=='NORMAL'">
+            <!-- <li class="nav-list-item " >
+                <i class="fa-solid fa-table"></i>
+                <span *ngIf="sideNavStatus">
+                    <a routerLink='normalPackages'>Buses</a>  
+                </span>
+           </li> -->
+
+          
+<!-- 
+            <li class="nav-list-item " >
+                <i class="fa-solid fa-table"></i>
+                <span *ngIf="sideNavStatus">
+                    <a routerLink="normalReceipt"> Tickets</a>
+                </span>
+            </li> -->
+
+              <!-- <li class="nav-list-item  " >
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            <span *ngIf="sideNavStatus">
+                <a   routerLink='profile'>Profile</a>
+            </span>
+        </li> -->
+
+        </div>
+        
+ 
+        <li class="nav-list-item  " *ngIf="userType=='NORMAL'" >
+            <i class="fa-solid fa-book"></i>
+            <span *ngIf="sideNavStatus">
+                <a   routerLink='getAvailability'>Availability</a>
+            </span>
+        </li>
+
+        <li class="nav-list-item  " >
+            <!-- <i class="fa-solid fa-book"></i> -->
+            <i class="fa-solid fa-location-dot"></i>
+            <span *ngIf="sideNavStatus">
+                <a   routerLink='locations'>Locations</a>
+            </span>
+        </li>
+
+        <li class="nav-list-item  " >
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            <span *ngIf="sideNavStatus">
+                <a   routerLink='profile'>Profile</a>
+            </span>
+        </li>
+
+        <li class="nav-list-item " *ngIf="userType=='NORMAL'" >
+            <i class="fa-solid fa-ticket-simple" aria-hidden="true"></i>
+            <span *ngIf="sideNavStatus">
+                <a   routerLink='getTicketsUser/:avalBusId/:setAvailId/:seatNumber/:totalPrice'>My Bookings</a>
+            </span>
+        </li>
+
+        <li class="nav-list-item  " >
+            <i class="fa-solid fa-circle-info"></i>
+            <span *ngIf="sideNavStatus">
+                <a   routerLink='about'>About</a>
+            </span>
+        </li>
+
+        
+        <!-- <li class="nav-list-item  " >
+            <i class="fa-solid fa-phone"></i>
+            <span *ngIf="sideNavStatus">
+                <a   href='https://www.solugenix.com/contact'>Contact</a>
+            </span>
+        </li> -->
+
+        <li class="nav-list-item  " >
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <span *ngIf="sideNavStatus">
+                <a (click)=" logoutUser()"  >Logout</a>
+            </span>
+        </li>
+      
+     
+   
+   </ul>
+</div>
+

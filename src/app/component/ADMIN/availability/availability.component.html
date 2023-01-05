@@ -1,0 +1,169 @@
+
+
+<div class="container">
+ 
+    <!-- Bus information  -->
+    <h1>Bus Info</h1>
+    <div class="row" style="margin-bottom: 50px;">
+        <div class="col-sm-3">
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Bus ID:</th>
+                        <td>{{busById.busId}}</td>
+                    </tr>
+                    <tr>
+                        <th>Bus Number:</th>
+                        <td>{{busById.busNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Bus Type:</th>
+                        <td>{{busById.busType}}</td>
+                    </tr>
+                    <tr>
+                        <th>Bus Source:</th>
+                        <td>{{busById.source}}</td>
+                    </tr>
+                    <tr>
+                        <th>Bus Destination:</th>
+                        <td>{{busById.destination}}</td>
+                    </tr>
+                   
+                    <tr>
+                        <th>Price:</th>
+                        <td>{{busById.price}}</td>
+                    </tr>
+                    <tr>
+                        <th>Total Seats:</th>
+                        <td>{{busById.totalSeats}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-5">
+            <strong>Driver and Bus Point Details</strong> <br><br>
+            <table style="margin-bottom: 50px;">
+                <tbody>
+                    <tr>
+                        <th>
+                            Boarding Point:
+                        </th>
+                        <td>
+                            {{busById.pickUpPoint}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Dropping Point:
+                        </th>
+                        <td>
+                            {{busById.droppingPoint}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Driver Name:
+                        </th>
+                        <td>
+                            {{busById.driverName}}
+                        </td>
+                    </tr>
+                       
+                  
+
+                    <tr>
+                        <th>
+                            Driver Number:
+                        </th>
+                        <td>
+                            {{busById.phoneNumber}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button *ngIf="isSetAval" class="btn btn-success" (click)="setAval()">Set Availability</button>&nbsp;
+            <button *ngIf="isShowAval" class="btn btn-success" (click)="showAval()">Show Availability</button>&nbsp;
+            <button  class="btn btn-danger"  routerLink="/addBus">Cancel</button>&nbsp;
+
+        </div>
+
+    </div>
+
+
+    <!-- showing bus availability -->
+    <ng-container *ngIf="showContainer">
+        <table class="table table-hover">
+            <thead style="background-color: gray;">
+                <tr>
+                    <th> Sr no</th>
+                    <th> Available Date</th>
+                    <th> Available Seats</th>
+                    <th style="text-align: center;"> Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let aval of busById.setAvailabilities; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{aval.availableDate}}</td>
+                    <td>{{aval.noAvailableSeates}}</td>
+                    <td style="text-align: center;">
+                        <img src="https://img.icons8.com/color/512/delete-forever.png" alt="delete" title="Delete"
+                            (click)="deleteAval(aval.setAvailId)"> &nbsp;
+                        <!-- <img src="https://img.icons8.com/external-anggara-blue-anggara-putra/512/external-edit-basic-user-interface-anggara-blue-anggara-putra.png"
+                            alt="edit" title="Edit" (click)="updateAval(aval.setAvailId)"> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table> 
+    </ng-container>
+
+    <br><br>
+    <!-- set new availability for this current bus -->
+    <ng-container *ngIf="setContainer">
+    <!-- <ng-container> -->
+        <div style="margin-top: 200px;">
+            <h2 class="bg-info text-light card" align="center" >Set Avaliability</h2> 
+           <form  [formGroup]="setAvailForm" (ngSubmit)="setNewAvailability()">
+            <div class="row">
+                <div class="form-group">
+                    <label>Enter Date</label>
+                    <input type="date" name="availableDate" id="availableDate" class="form-control" formControlName="availableDate" required
+                     [(ngModel)]="setAvailabilities.availableDate">
+                </div>
+                <div class="form-text text-danger" 
+                *ngIf="availableDate.errors?.['required'] && (availableDate.touched || availableDate.dirty)" >
+                   *Available Date is Required
+                </div>
+            </div>
+
+            <div class="row">  
+                <div class="form-group">    
+                    <label>Enter No Seats</label>
+                    <input type="number" name="noAvailableSeates" id="noAvailableSeates"  class="form-control" 
+                    formControlName="noAvailableSeates" required
+                    [(ngModel)]="setAvailabilities.noAvailableSeates">
+                    <div class="form-text text-danger" 
+                    *ngIf="noAvailableSeates.errors?.['required'] && (noAvailableSeates.touched || noAvailableSeates.dirty)" >
+                       *Number of Available Seates is Required
+                    </div>
+                </div>  
+            </div>
+          
+            <button type="submit" class="btn btn-primary" style="width: 100px;"  [disabled]="setAvailForm.invalid">Set Avail</button>
+        </form>
+        </div>
+    </ng-container>
+
+</div>
+
+
+
+
+
+<!-- New edition -->

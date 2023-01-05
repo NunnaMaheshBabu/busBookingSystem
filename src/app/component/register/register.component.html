@@ -1,0 +1,91 @@
+<p>register works!</p>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<!-- <link rel="stylesheet" type="text/css" href="slide navbar style.css"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet"> -->
+</head>
+<body>
+
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form [formGroup]="registerform" (ngSubmit)="formSubmit()">
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input class="form-control"  id="userName" formControlName="userName" required [(ngModel)]="user.userName" name="userName"
+                      placeholder="User name" >
+                    <div class="form-text text-danger" *ngIf="userName.errors?.['required'] && (userName.touched || userName.dirty)"> 
+                        *User Name is Required
+                    </div>
+                    <div class="form-text text-danger" *ngIf="userName.errors?.['minlength']"> 
+                      *userName  is too short
+                  </div>
+                  <div class="form-text text-danger" *ngIf="userName.errors?.['pattern'] && userName.touched">
+                      *User Name should start with Alphabet
+                  </div>
+
+                 
+
+                  
+
+ 
+                    <!-- password Field -->
+                    <input  class="form-control" id="password" formControlName = "password" required [(ngModel)]="user.password" name="password" type="password" placeholder="Password">
+                    <div class="form-text text-danger" *ngIf="password.errors?.['required'] && (password.touched || password.dirty)"> 
+                        *password is Required
+                    </div>
+                    <div class="form-text text-danger" *ngIf="password.errors?.['minlength']"> 
+                      *password  is too short
+                  </div>
+                  <div class="form-text text-danger" *ngIf="password.errors?.['pattern'] && password.touched">
+                     *Password does not allow white spaces
+                      *password should start with Alphabet
+                      *password contains atleast one digit and one special character
+                  </div>
+                  
+                  <!-- email -->
+                    <input class="form-control" id="email" formControlName="email" required [(ngModel)]="user.email" type="email" name="email" placeholder="Email">
+                    <div class="form-text text-danger" *ngIf="email.errors?.['required'] && email.touched"> 
+                        *email required
+                    </div>
+                    <div class="form-text text-danger" *ngIf="email.errors?.['pattern'] && email.touched"> 
+                        *invalid email 
+                        *email should end with @gmail.com or @ymail.com or @solugenix.com
+                    </div>
+
+                    <!-- phoneNumber -->
+                    <input class="form-control" id="mobile" formControlName="mobile" required [(ngModel)]="user.mobile"  name="mobile" placeholder="mobile">
+                    <div class="form-text text-danger" *ngIf="mobile.errors?.['required'] && mobile.touched "> 
+                        *Phone number required
+                    </div>
+                    <div class="form-text text-danger" *ngIf="mobile.errors?.['pattern'] && mobile.touched"> 
+                        *must have only digits
+                        
+                    </div>
+                    <div class="form-text text-danger" *ngIf="mobile.errors?.['minlength'] && mobile.touched"> 
+                        *min numbers 10 only
+                    </div>
+                    <div class="form-text text-danger" *ngIf="mobile.errors?.['maxlength'] && mobile.touched"> 
+                        *max numbers 10 only
+                    </div>
+
+					<button>Sign up</button>
+                    <h6 routerLink="/login">Already a member ? SignIn</h6>
+				</form>
+			</div>
+
+			<!-- <div class="login">
+				<form>
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					<button>Login</button>
+				</form>
+			</div> -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<p>locations works!</p>
+ <div class="container">
+<div *ngIf="locations">
+    <div style="padding-bottom: 10px;text-align: left;">
+        <input type="search" class="form-control" [(ngModel)]="searchInput.location"
+            placeholder="Search by Location" style="width:250px">
+    </div>
+
+    <div style="padding-bottom: 5px;text-align: left;">
+        <b>Choose number of records : &nbsp;</b>
+        <select (change)="onTableSizeChange($event)" style="width:55px">
+            <option *ngFor="let size of tableSizes">
+                {{size}}
+            </option>
+        </select>
+        <b style="padding-left: 280px;">Available Locations - {{locationArray.length}}</b>
+    </div>
+
+    <table  class="table " align="center" >
+        <thead style="background-color: rgba(93, 93, 93, 0.512); width: 100px; background-color: snow;">
+            <tr>
+                <th scope="col">Sr N0 </th>
+                <th scope="col" (click)="sort('location')">Location &nbsp;<i class="fa fa-sort"></i></th>
+                <th scope="col" *ngIf="userType=='ADMIN'" >Action</th>
+                <!-- <th scope="col">Action</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let loc of locationArray  ; let i = index">
+
+                <th scope="row">{{i+1}} </th>
+                <td style=" text-align:left">{{loc.locations}}</td>
+                <td > <a  (click)="deleteLocationById(loc.locId)" > <img style="height: 70;"
+                            src="https://cdn-icons-png.flaticon.com/128/6861/6861362.png" alt="Delete"> </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <div *ngIf="(locations | filterBy : searchInput).length === 0" style="text-align: center; padding-top:50px">
+        <p style="color: red;text-align: center; font-size: 16px;"> No Match Found </p>
+    </div> -->
+    <!-- for Pagination -->
+    <div style="float:right">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
+</div>
+</div>
+
+<!-- {{locationArray | json}} -->

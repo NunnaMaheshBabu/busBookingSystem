@@ -1,0 +1,27 @@
+.container{
+    padding-top: 40px;
+    padding-left: 140px;
+    /* padding-bottom: 10px; */
+}
+
+.row{
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+    
+}
+
+input{
+    margin-bottom: 20px;
+}
+
+label{
+    margin-bottom: 10px;
+}
+td{
+    padding-left: 25px;
+}
+
+img{
+    height: 30px;
+}
